@@ -1,0 +1,26 @@
+{
+  "name": "backend-snetworks",
+  "version": "1.0.0",
+  "description": "A simple web service using NodeJS that exposes the GET and POST APIs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaydeepw/backend-snetworks.git"
+  },
+  "keywords": [
+    "node",
+    "express"
+  ],
+  "author": "jaydeepw",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jaydeepw/backend-snetworks/issues"
+  },
+  "homepage": "https://github.com/jaydeepw/backend-snetworks#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
