@@ -5,7 +5,7 @@ const app = require('../../../app.js')
 
 describe('Filter tests', () => {
     it('Positive, get data as per contract', (done) => {
-        request(app).get('/')
+        request(app).get('/matches')
         .then((res) => {
             const body = res.body
             expect(body).to.contain.property('matches')
@@ -15,7 +15,7 @@ describe('Filter tests', () => {
     })
 
     it('Positive, get all item without filter', (done) => {
-        request(app).get('/')
+        request(app).get('/matches')
         .then((res) => {
             const body = res.body
             expect(body.matches.length).to.equal(25)
@@ -25,7 +25,7 @@ describe('Filter tests', () => {
     })
 
     it('Negative, get all without off by one error greater', (done) => {
-        request(app).get('/')
+        request(app).get('/matches')
         .then((res) => {
             const body = res.body
             expect(body.matches.length).to.not.equal(26)
@@ -35,7 +35,7 @@ describe('Filter tests', () => {
     })
 
     it('Negative, get all without off by one error smaller', (done) => {
-        request(app).get('/')
+        request(app).get('/matches')
         .then((res) => {
             const body = res.body
             expect(body.matches.length).to.not.equal(24)
