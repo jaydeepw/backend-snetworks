@@ -33,4 +33,14 @@ describe('GET all', () => {
         })
         .catch((err) => done(err))
     })
+
+    it('Negative, get all item without off by one error smaller', (done) => {
+        request(app).get('/')
+        .then((res) => {
+            const body = res.body
+            expect(body.matches.length).to.not.equal(24)
+            done()
+        })
+        .catch((err) => done(err))
+    })
 })
