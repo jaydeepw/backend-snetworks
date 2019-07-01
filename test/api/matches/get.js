@@ -3,7 +3,7 @@ const request = require('supertest')
 
 const app = require('../../../app.js')
 
-describe('GET all', () => {
+describe('Filter tests', () => {
     it('Positive, get data as per contract', (done) => {
         request(app).get('/')
         .then((res) => {
@@ -24,7 +24,7 @@ describe('GET all', () => {
         .catch((err) => done(err))
     })
 
-    it('Negative, get all item without off by one error greater', (done) => {
+    it('Negative, get all without off by one error greater', (done) => {
         request(app).get('/')
         .then((res) => {
             const body = res.body
@@ -34,7 +34,7 @@ describe('GET all', () => {
         .catch((err) => done(err))
     })
 
-    it('Negative, get all item without off by one error smaller', (done) => {
+    it('Negative, get all without off by one error smaller', (done) => {
         request(app).get('/')
         .then((res) => {
             const body = res.body
