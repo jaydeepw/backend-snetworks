@@ -4,7 +4,7 @@
   "description": "A simple web service using NodeJS that exposes the GET and POST APIs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --recursive --exit"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,11 @@
   },
   "homepage": "https://github.com/jaydeepw/backend-snetworks#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
     "express": "^4.17.1",
-    "fs": "0.0.1-security"
+    "fs": "0.0.1-security",
+    "mocha": "^6.1.4",
+    "supertest": "^4.0.2"
   }
 }
