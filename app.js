@@ -1,20 +1,18 @@
+const MatchesController = require('./controllers/matchesController.js')
+
+const dbPath = "data/data.json"
 const express = require('express')
-const fs = require('fs')
+
 const bodyParser = require('body-parser')
 const app = express()
 const port = 3000
 
 app.use(bodyParser.json())
+app.locals.dbPath = dbPath;
 
 app.get('/matches', (req, res) => {
-    fs.readFile('data/data.json', 'utf8', function(err, contents) {
-        if(!err) {
-            res.send(JSON.parse(contents))
-        } else {
-            console.log(err)
-        }
-    });
+    MatchesController.sendResponseByFilter(app.locals.dbPath, req, res)
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
-module.exports = app;
+module.exports = app
