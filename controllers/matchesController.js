@@ -7,9 +7,7 @@ class MatchesController {
         fs.readFile(dbPath, 'utf8', function(err, contents) {
             if(!err) {
                 contents = JSON.parse(contents)
-                console.log(contents.matches.length)
                 const result = matchesControllerScope.getFilteredData(req, contents)
-                console.log(result.matches.length)
                 res.send(result)
             } else {
                 res.send(err)
