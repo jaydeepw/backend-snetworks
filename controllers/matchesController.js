@@ -8,7 +8,7 @@ class MatchesController {
             if(!err) {
                 contents = JSON.parse(contents)
                 const result = matchesControllerScope.getFilteredData(req, contents)
-                console.log(result.matches.length)
+                // console.log(result.matches.length)
                 res.send(result)
             } else {
                 res.send(err)
