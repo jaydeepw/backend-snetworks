@@ -12,6 +12,14 @@ class AgeFilterController {
     static getAgeQueryParamValidationMsg() {
         return "'minAge' & 'maxAge' both are needed"
     }
+
+    static hasValidMinAge(minAge) {
+        return minAge >= 18
+    }
+
+    static getInvalidMinAgeMessage() {
+        return "'minAge' cannot be less than 18"
+    }
 }
 
 module.exports = AgeFilterController

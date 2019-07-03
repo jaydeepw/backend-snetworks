@@ -79,4 +79,52 @@ describe('For filter age', () => {
         })
         .catch((err) => done(err))
     })
+
+    it('Negative, minAge < 18', (done) => {
+        request(app).get(endpoint + "?" + queryStringMaxAgeWoValue + '40' +
+        '&' + queryStringMinAgeWoValue + '17')
+        .then((res) => {
+            const body = res.body
+            expect(res.status).to.eql(400)
+            expect(body).to.contain.property('message')
+            done()
+        })
+        .catch((err) => done(err))
+    })
+
+    it('Negative, minAge == 18', (done) => {
+        request(app).get(endpoint + "?" + queryStringMaxAgeWoValue + '40' +
+        '&' + queryStringMinAgeWoValue + '18')
+        .then((res) => {
+            const body = res.body
+            expect(res.status).to.eql(200)
+            body.matches.forEach(element => {
+                expect(element.hasOwnProperty('display_name')).to.be.true;
+                expect(element.hasOwnProperty('age')).to.be.true;
+                expect(element.hasOwnProperty('age')).to.not.be.NaN;
+                expect(element.age).to.be.least(18)
+                expect(element.age).to.be.most(40)
+            });
+            done()
+        })
+        .catch((err) => done(err))
+    })
+
+    it('Negative, minAge > 18', (done) => {
+        request(app).get(endpoint + "?" + queryStringMaxAgeWoValue + '40' +
+        '&' + queryStringMinAgeWoValue + '19')
+        .then((res) => {
+            const body = res.body
+            expect(res.status).to.eql(200)
+            body.matches.forEach(element => {
+                expect(element.hasOwnProperty('display_name')).to.be.true;
+                expect(element.hasOwnProperty('age')).to.be.true;
+                expect(element.hasOwnProperty('age')).to.not.be.NaN;
+                expect(element.age).to.be.least(19)
+                expect(element.age).to.be.most(40)
+            });
+            done()
+        })
+        .catch((err) => done(err))
+    })
 })

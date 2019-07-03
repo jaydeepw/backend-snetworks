@@ -14,6 +14,12 @@ class MatchesController {
             result.message = AgeFilterController.getAgeQueryParamValidationMsg()
             res.status(400)
             res.send(result)
+        } else if(Utils.hasBothParams(req, constants.QUERY_AGE_MIN, constants.QUERY_AGE_MAX) &&
+            !AgeFilterController.hasValidMinAge(req.query.minAge)) {
+            var result = {}
+            result.message = AgeFilterController.getInvalidMinAgeMessage()
+            res.status(400)
+            res.send(result)
         } else {
             fs.readFile(dbPath, 'utf8', function(err, contents) {
                 if(!err) {
