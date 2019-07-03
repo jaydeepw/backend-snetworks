@@ -7,3 +7,4 @@ A simple web service using NodeJS that exposes a GET API
 
 # There are some assumptions made when working on the provided data set here
 - 'display_name' is a mandatory non-null non-empty property
+- For filter values that are sent 'false' for e.g. favourites, it has no effect on filtering. It will return both favourites and non-favourites

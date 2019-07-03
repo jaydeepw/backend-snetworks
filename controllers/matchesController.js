@@ -25,7 +25,7 @@ class MatchesController {
     }
 
     static getAgeQueryParamValidationMsg() {
-        return "'minage' & 'maxage' both are needed"
+        return "'minAge' & 'maxAge' both are needed"
     }
 
     static hasBothParamsOrHasNone(req, paramName1, paramName2) {
@@ -44,6 +44,8 @@ class MatchesController {
     static getFilteredData(req, contents) {
         const hasPhoto = req.query.hasPhoto
         const isFavourite = req.query.isFavourite
+        const minAge = parseInt(req.query.minAge)
+        const maxAge = parseInt(req.query.maxAge)
         if(hasPhoto === 'true') {
             contents.matches = contents.matches.filter(this.hasPhoto)
         }
@@ -52,7 +54,23 @@ class MatchesController {
             contents.matches = contents.matches.filter(this.isFavourite)
         }
 
+        if(!isNaN(minAge) && !isNaN(maxAge)) {
+            var range = {lower: minAge, upper: maxAge};
+            contents.matches = contents.matches.filter(this.isInRange, range)
+        }
+
         return contents
+    }
+
+    static isInRange(value) {
+        return value.age >= this.lower && value.age <= this.upper;
+    }
+
+    static isFavourite(value) {
+        return value.favourite != null &&
+        value.favourite != 'undefined' &&
+        value.favourite != ''  &&
+        value.favourite == true;
     }
 
     static isFavourite(value) {
