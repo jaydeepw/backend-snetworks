@@ -17,8 +17,16 @@ class AgeFilterController {
         return minAge >= 18
     }
 
+    static hasValidMaxAge(maxAge) {
+        return maxAge <= 95
+    }
+
     static getInvalidMinAgeMessage() {
         return "'minAge' cannot be less than 18"
+    }
+
+    static getInvalidMaxAgeMessage() {
+        return "'maxAge' cannot be greater than 95"
     }
 }
 

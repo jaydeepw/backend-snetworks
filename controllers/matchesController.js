@@ -10,14 +10,24 @@ class MatchesController {
     static sendResponse(dbPath, req, res) {
         var matchesControllerScope = this
         if(!Utils.hasBothParamsOrHasNone(req, constants.QUERY_AGE_MIN, constants.QUERY_AGE_MAX)) {
+            // check if both filter params are present
+            // for range filter for e.g age
             var result = {}
             result.message = AgeFilterController.getAgeQueryParamValidationMsg()
             res.status(400)
             res.send(result)
         } else if(Utils.hasBothParams(req, constants.QUERY_AGE_MIN, constants.QUERY_AGE_MAX) &&
             !AgeFilterController.hasValidMinAge(req.query.minAge)) {
+            // check validity of minAge param
             var result = {}
             result.message = AgeFilterController.getInvalidMinAgeMessage()
+            res.status(400)
+            res.send(result)
+        } else if(Utils.hasBothParams(req, constants.QUERY_AGE_MIN, constants.QUERY_AGE_MAX) &&
+            !AgeFilterController.hasValidMaxAge(req.query.maxAge)) {
+            // check validity of maxAge param
+            var result = {}
+            result.message = AgeFilterController.getInvalidMaxAgeMessage()
             res.status(400)
             res.send(result)
         } else {
