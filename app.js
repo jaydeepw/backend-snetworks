@@ -12,7 +12,7 @@ app.use(bodyParser.json())
 app.locals.dbPath = dbPath;
 
 app.get(constants.ENDPOINT_MATCHES, (req, res) => {
-    MatchesController.sendResponseByFilter(app.locals.dbPath, req, res)
+    MatchesController.sendResponse(app.locals.dbPath, req, res)
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

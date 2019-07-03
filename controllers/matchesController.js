@@ -7,7 +7,7 @@ const AgeFilterController = require('./ageFilterController')
 
 class MatchesController {
 
-    static sendResponseByFilter(dbPath, req, res) {
+    static sendResponse(dbPath, req, res) {
         var matchesControllerScope = this
         if(!Utils.hasBothParamsOrHasNone(req, constants.QUERY_AGE_MIN, constants.QUERY_AGE_MAX)) {
             var result = {}
@@ -19,7 +19,6 @@ class MatchesController {
                 if(!err) {
                     contents = JSON.parse(contents)
                     const result = matchesControllerScope.getFilteredData(req, contents)
-                    //console.log(result.matches.length)
                     res.send(result)
                 } else {
                     res.send(err)
