@@ -1,5 +1,6 @@
 const fs = require('fs')
 const constants = require('../utils/constants')
+const PhotosFilterController = require('./photoFilterController')
 
 class MatchesController {
 
@@ -47,7 +48,7 @@ class MatchesController {
         const minAge = parseInt(req.query.minAge)
         const maxAge = parseInt(req.query.maxAge)
         if(hasPhoto === 'true') {
-            contents.matches = contents.matches.filter(this.hasPhoto)
+            contents.matches = PhotosFilterController.filter(contents.matches)
         }
 
         if(isFavourite === 'true') {
@@ -78,12 +79,6 @@ class MatchesController {
         value.favourite != 'undefined' &&
         value.favourite != ''  &&
         value.favourite == true;
-    }
-
-    static hasPhoto(value) {
-        return value.main_photo != null &&
-        value.main_photo != 'undefined' &&
-        value.main_photo != '';
     }
 }
 
