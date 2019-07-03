@@ -13,6 +13,9 @@ describe('FavouritesFilterController test', () => {
         items.push({favourite : false})
         items.push({favourite : true})
         items.push({favourite : false})
+        items.push({favourite : ""})
+        items.push({favourite : undefined})
+        items.push({favourite : null})
     })
 
     it('filters out favourites', (done) => {
