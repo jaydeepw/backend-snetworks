@@ -1,4 +1,5 @@
 const expect = require('chai').expect
+const assert = require('chai').assert
 const request = require('supertest')
 const constants = require('../../../utils/constants')
 const endpoint = constants.ENDPOINT_MATCHES
@@ -25,6 +26,8 @@ describe('Tests with composite filters', () => {
             body.matches.forEach(element => {
                 expect(element.hasOwnProperty('main_photo')).to.be.true;
                 expect(element.hasOwnProperty('favourite')).to.be.true;
+                assert.isNotNull(element.main_photo)
+                assert.isNotNull(element.favourite)
             });
             done()
         })
@@ -38,6 +41,8 @@ describe('Tests with composite filters', () => {
             body.matches.forEach(element => {
                 expect(element.hasOwnProperty('main_photo')).to.be.true;
                 expect(element.hasOwnProperty('favourite')).to.be.true;
+                assert.isNotNull(element.main_photo)
+                assert.isNotNull(element.favourite)
             });
             done()
         })
