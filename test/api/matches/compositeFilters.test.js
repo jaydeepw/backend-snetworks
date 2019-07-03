@@ -55,6 +55,24 @@ describe('Tests with composite filters', () => {
             const body = res.body
             body.matches.forEach(element => {
                 expect(element.hasOwnProperty('display_name')).to.be.true;
+                expect(element.main_photo).to.satisfy(function (url) {
+                    if (url == "" || 
+                    url == undefined || 
+                    url == null || 
+                    typeof url === 'string') {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                 });
+
+                 expect(element.favourite).to.satisfy(function (favourite) {
+                    if (typeof(favourite) == "boolean") {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                 });
             });
             done()
         })
@@ -67,6 +85,24 @@ describe('Tests with composite filters', () => {
             const body = res.body
             body.matches.forEach(element => {
                 expect(element.hasOwnProperty('display_name')).to.be.true;
+                expect(element.main_photo).to.satisfy(function (url) {
+                    if (url == "" || 
+                    url == undefined || 
+                    url == null || 
+                    typeof url === 'string') {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                 });
+
+                 expect(element.favourite).to.satisfy(function (favourite) {
+                    if (typeof(favourite) == "boolean") {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                 });
             });
             done()
         })
@@ -79,6 +115,24 @@ describe('Tests with composite filters', () => {
             const body = res.body
             body.matches.forEach(element => {
                 expect(element.hasOwnProperty('display_name')).to.be.true;
+                expect(element.main_photo).to.satisfy(function (url) {
+                    if (url == "" || 
+                    url == undefined || 
+                    url == null || 
+                    typeof url === 'string') {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                 });
+
+                 expect(element.favourite).to.satisfy(function (favourite) {
+                    if (typeof(favourite) == "boolean") {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                 });
             });
             done()
         })
