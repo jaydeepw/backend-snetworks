@@ -3,7 +3,7 @@ const assert = require('chai').assert
 const AgeFilterController = require('../../controllers/ageFilterController')
 var items = []
 
-describe('Controller simple methods test', () => {
+describe('AgeFilterController simple methods test', () => {
 
     it('Non null min age validation message', (done) => {
         const message = AgeFilterController.getInvalidMinAgeMessage()
@@ -52,7 +52,7 @@ describe('Controller simple methods test', () => {
     })
 })
 
-describe('Controller medium methods test', () => {
+describe('AgeFilterController medium methods test', () => {
     
     beforeEach(function () {
         items = []
@@ -72,6 +72,12 @@ describe('Controller medium methods test', () => {
         var result = AgeFilterController.filter(items, 32, 40)
         assert.isArray(result)
         assert.lengthOf(result, 3)
+        result.forEach(element => {
+            expect(element.hasOwnProperty('age')).to.be.true;
+            expect(element.hasOwnProperty('age')).to.not.be.NaN;
+            expect(element.age).to.be.least(32)
+            expect(element.age).to.be.most(40)
+        });
         done()
     })
 
@@ -79,6 +85,12 @@ describe('Controller medium methods test', () => {
         var result = AgeFilterController.filter(items, 14, 96)
         assert.isArray(result)
         assert.lengthOf(result, 10)
+        result.forEach(element => {
+            expect(element.hasOwnProperty('age')).to.be.true;
+            expect(element.hasOwnProperty('age')).to.not.be.NaN;
+            expect(element.age).to.be.least(14)
+            expect(element.age).to.be.most(96)
+        });
         done()
     })
 
