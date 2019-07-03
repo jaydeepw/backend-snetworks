@@ -12,7 +12,6 @@ describe('For filter age', () => {
         request(app).get(endpoint + "?" +queryStringMinAgeWoValue + '20')
         .then((res) => {
             const body = res.body
-            // console.log(res)
             expect(res.status).to.eql(400)
             expect(body).to.contain.property('message')
             done()
@@ -20,11 +19,10 @@ describe('For filter age', () => {
         .catch((err) => done(err))
     })
 
-    it('Negative, Has only maxage query param', (done) => {
+    it('Negative, Has only maxAge query param', (done) => {
         request(app).get(endpoint + "?" + queryStringMaxAgeWoValue + '20')
         .then((res) => {
             const body = res.body
-            // console.log(res)
             expect(res.status).to.eql(400)
             expect(body).to.contain.property('message')
             done()
@@ -32,7 +30,7 @@ describe('For filter age', () => {
         .catch((err) => done(err))
     })
 
-    it('Positive, Has both maxage & minage query param', (done) => {
+    it('Positive, Has both maxAge & minAge query param', (done) => {
         request(app).get(endpoint + "?" + queryStringMaxAgeWoValue + '40' +
         '&' + queryStringMinAgeWoValue + '20')
         .then((res) => {
@@ -46,7 +44,7 @@ describe('For filter age', () => {
         .catch((err) => done(err))
     })
 
-    it('Positive, Has both maxage & minage query param', (done) => {
+    it('Positive, Has both maxAge & minAge query param', (done) => {
         request(app).get(endpoint + "?" + queryStringMaxAgeWoValue + '40' +
         '&' + queryStringMinAgeWoValue + '20')
         .then((res) => {
@@ -57,6 +55,24 @@ describe('For filter age', () => {
                 expect(element.hasOwnProperty('age')).to.be.true;
                 expect(element.hasOwnProperty('age')).to.not.be.NaN;
                 expect(element.age).to.be.least(20)
+                expect(element.age).to.be.most(40)
+            });
+            done()
+        })
+        .catch((err) => done(err))
+    })
+
+    it('Positive, Has both maxAge & minAge query param', (done) => {
+        request(app).get(endpoint + "?" + queryStringMaxAgeWoValue + '40' +
+        '&' + queryStringMinAgeWoValue + '35')
+        .then((res) => {
+            const body = res.body
+            expect(res.status).to.eql(200)
+            body.matches.forEach(element => {
+                expect(element.hasOwnProperty('display_name')).to.be.true;
+                expect(element.hasOwnProperty('age')).to.be.true;
+                expect(element.hasOwnProperty('age')).to.not.be.NaN;
+                expect(element.age).to.be.least(35)
                 expect(element.age).to.be.most(40)
             });
             done()
