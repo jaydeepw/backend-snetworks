@@ -1,6 +1,7 @@
 const fs = require('fs')
 const constants = require('../utils/constants')
 const PhotosFilterController = require('./photoFilterController')
+const FavouritesFilterController = require('./favouritesFilterController')
 
 class MatchesController {
 
@@ -52,7 +53,7 @@ class MatchesController {
         }
 
         if(isFavourite === 'true') {
-            contents.matches = contents.matches.filter(this.isFavourite)
+            contents.matches = FavouritesFilterController.filter(contents.matches)
         }
 
         if(!isNaN(minAge) && !isNaN(maxAge)) {
@@ -65,20 +66,6 @@ class MatchesController {
 
     static isInRange(value) {
         return value.age >= this.lower && value.age <= this.upper;
-    }
-
-    static isFavourite(value) {
-        return value.favourite != null &&
-        value.favourite != 'undefined' &&
-        value.favourite != ''  &&
-        value.favourite == true;
-    }
-
-    static isFavourite(value) {
-        return value.favourite != null &&
-        value.favourite != 'undefined' &&
-        value.favourite != ''  &&
-        value.favourite == true;
     }
 }
 
