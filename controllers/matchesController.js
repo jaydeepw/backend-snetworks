@@ -1,19 +1,44 @@
 const fs = require('fs')
+const constants = require('../utils/constants')
 
 class MatchesController {
 
     static sendResponseByFilter(dbPath, req, res) {
         var matchesControllerScope = this
-        fs.readFile(dbPath, 'utf8', function(err, contents) {
-            if(!err) {
-                contents = JSON.parse(contents)
-                const result = matchesControllerScope.getFilteredData(req, contents)
-                // console.log(result.matches.length)
-                res.send(result)
-            } else {
-                res.send(err)
-            }
-        });
+        if(!this.hasBothParamsOrHasNone(req, constants.QUERY_AGE_MIN, constants.QUERY_AGE_MAX)) {
+            var result = {}
+            result.message = this.getAgeQueryParamValidationMsg()
+            res.status(400)
+            res.send(result)
+        } else {
+            fs.readFile(dbPath, 'utf8', function(err, contents) {
+                if(!err) {
+                    contents = JSON.parse(contents)
+                    const result = matchesControllerScope.getFilteredData(req, contents)
+                    //console.log(result.matches.length)
+                    res.send(result)
+                } else {
+                    res.send(err)
+                }
+            });
+        }
+    }
+
+    static getAgeQueryParamValidationMsg() {
+        return "'minage' & 'maxage' both are needed"
+    }
+
+    static hasBothParamsOrHasNone(req, paramName1, paramName2) {
+        // ensure both query params exist or none
+        if ((!req.query.hasOwnProperty(paramName1) &&
+                !req.query.hasOwnProperty(paramName2)) 
+            ||
+            (req.query.hasOwnProperty(paramName1) &&
+                req.query.hasOwnProperty(paramName2))) {
+                    return true
+                } else {
+                    return false
+                }
     }
 
     static getFilteredData(req, contents) {
