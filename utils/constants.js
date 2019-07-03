@@ -1,4 +1,6 @@
 module.exports = Object.freeze({
+    DB_PATH: "data/data.json",
+
     ENDPOINT_MATCHES: "/matches",
 
     QUERY_HAS_PHOTO: 'hasPhoto',
