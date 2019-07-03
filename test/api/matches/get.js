@@ -59,7 +59,7 @@ describe('Without any filter', () => {
 })
 
 describe('For filter hasPhoto', () => {
-    var queryStringWoValue = "?hasPhoto="
+    var queryStringWoValue = "?" + constants.QUERY_HAS_PHOTO + "="
     it('Positive, get data as per contract', (done) => {
         request(app).get(endpoint + queryStringWoValue + 'true')
         .then((res) => {
@@ -136,7 +136,8 @@ describe('For filter hasPhoto', () => {
 })
 
 describe('For filter isFavourite', () => {
-    var queryStringWoValue = "?isFavourite="
+    // var queryStringWoValue = "?isFavourite="
+    var queryStringWoValue = "?" + constants.QUERY_IS_FAVOURITE + "="
     it('Positive, get data as per contract', (done) => {
         request(app).get(endpoint + queryStringWoValue + 'true')
         .then((res) => {

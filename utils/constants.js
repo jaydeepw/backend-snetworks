@@ -1,4 +1,6 @@
 module.exports = Object.freeze({
     ENDPOINT_MATCHES: "/matches",
-    ANOTHER_CONSTANT: 'another value'
+    
+    QUERY_HAS_PHOTO: 'hasPhoto',
+    QUERY_IS_FAVOURITE: 'isFavourite'
 });
