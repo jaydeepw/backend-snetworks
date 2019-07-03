@@ -305,14 +305,14 @@ describe('Tests with composite filters', () => {
         .catch((err) => done(err))
     })
 
-    it('Negative, hasPhoto="true" && isFavourite="" returns all favourites', (done) => {
+    it('Negative, hasPhoto="true" && isFavourite="" returns all with photos', (done) => {
         request(app).get(endpoint + "?" + queryStringHasPhoto + 'true' + "&" + queryStringIsFav + '')
         .then((res) => {
             const body = res.body
             body.matches.forEach(element => {
                 expect(element.favourite).to.satisfy(function (fav) {
                     if (fav == "" || 
-                    fav == undefined || 
+                    fav == undefined ||
                     fav == null || 
                     typeof fav === 'boolean') {
                         return true;
