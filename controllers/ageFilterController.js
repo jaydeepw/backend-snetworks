@@ -16,19 +16,29 @@ class AgeFilterController {
     }
 
     static hasValidMinAge(age) {
-        return age >= constants.AGE_LOWER_BOUND
+        try {
+            age = parseInt(age)
+            return typeof age == 'number' && age >= constants.AGE_LOWER_BOUND
+        } catch(e) {
+            return false
+        }
     }
 
     static hasValidMaxAge(age) {
-        return age <= constants.AGE_UPPER_BOUND
+        try {
+            age = parseInt(age)
+            return typeof age == 'number' && age <= constants.AGE_UPPER_BOUND
+        } catch(e) {
+            return false
+        }
     }
 
     static getInvalidMinAgeMessage() {
-        return "'minAge' cannot be less than 18"
+        return "'minAge' invalid or less than 18"
     }
 
     static getInvalidMaxAgeMessage() {
-        return "'maxAge' cannot be greater than 95"
+        return "'maxAge' invalid or greater than 95"
     }
 }
 

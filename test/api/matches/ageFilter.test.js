@@ -175,4 +175,28 @@ describe('For filter age', () => {
         })
         .catch((err) => done(err))
     })
+
+    it('Negative, fail on maxAge is string', (done) => {
+        request(app).get(endpoint + "?" + queryStringMaxAgeWoValue + '"94"' +
+        '&' + queryStringMinAgeWoValue + '21')
+        .then((res) => {
+            const body = res.body
+            expect(res.status).to.eql(400)
+            expect(body).to.contain.property('message')
+            done()
+        })
+        .catch((err) => done(err))
+    })
+
+    it('Negative, fail on minAge is string', (done) => {
+        request(app).get(endpoint + "?" + queryStringMaxAgeWoValue + '94' +
+        '&' + queryStringMinAgeWoValue + '"21"')
+        .then((res) => {
+            const body = res.body
+            expect(res.status).to.eql(400)
+            expect(body).to.contain.property('message')
+            done()
+        })
+        .catch((err) => done(err))
+    })
 })
