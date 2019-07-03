@@ -1,3 +1,5 @@
+const constants = require('../utils/constants')
+
 class AgeFilterController {
 
     static filter(items, minAge, maxAge) {
@@ -13,12 +15,12 @@ class AgeFilterController {
         return "'minAge' & 'maxAge' both are needed"
     }
 
-    static hasValidMinAge(minAge) {
-        return minAge >= 18
+    static hasValidMinAge(age) {
+        return age >= constants.AGE_LOWER_BOUND
     }
 
-    static hasValidMaxAge(maxAge) {
-        return maxAge <= 95
+    static hasValidMaxAge(age) {
+        return age <= constants.AGE_UPPER_BOUND
     }
 
     static getInvalidMinAgeMessage() {
