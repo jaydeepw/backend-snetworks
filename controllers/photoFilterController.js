@@ -1,6 +1,3 @@
-const fs = require('fs')
-const constants = require('../utils/constants')
-
 class PhotosFilterController {
 
     static filter(items) {
@@ -10,7 +7,7 @@ class PhotosFilterController {
     static hasPhoto(value) {
         return value.main_photo != null &&
         value.main_photo != 'undefined' &&
-        value.main_photo != '';
+        value.main_photo != ''
     }
 }
 

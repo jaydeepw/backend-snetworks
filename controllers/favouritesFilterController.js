@@ -1,6 +1,3 @@
-const fs = require('fs')
-const constants = require('../utils/constants')
-
 class FavouritesFilterController {
 
     static filter(items) {
@@ -11,7 +8,7 @@ class FavouritesFilterController {
         return value.favourite != null &&
         value.favourite != 'undefined' &&
         value.favourite != ''  &&
-        value.favourite == true;
+        value.favourite == true
     }
 }
 
