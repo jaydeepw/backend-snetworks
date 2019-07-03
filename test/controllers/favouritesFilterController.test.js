@@ -15,13 +15,23 @@ describe('FavouritesFilterController test', () => {
         items.push({favourite : false})
     })
 
-    it('filters are within small range', (done) => {
+    it('filters out favourites', (done) => {
         var result = FavouritesFilterController.filter(items)
         assert.isArray(result)
         assert.lengthOf(result, 3)
         result.forEach(element => {
             expect(element.hasOwnProperty('favourite')).to.be.true
             assert.isTrue(element.favourite)
+        });
+        done()
+    })
+
+    it('Does not filter out non-favourites', (done) => {
+        var result = FavouritesFilterController.filter(items)
+        assert.isArray(result)
+        assert.lengthOf(result, 3)
+        result.forEach(element => {
+            expect(element.hasOwnProperty('favourite')).to.not.be.false
         });
         done()
     })
