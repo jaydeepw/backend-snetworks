@@ -1,3 +1,6 @@
+// Makes more sense in keeping constants here
+// I am not very sure if keeping end points here is a good idea though
+
 module.exports = Object.freeze({
     DB_PATH: "data/data.json",
     AGE_LOWER_BOUND: 18,
